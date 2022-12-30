@@ -3,9 +3,8 @@ const fs = require('fs')
 const express = require('express');
 const res = require('express/lib/response');
 const app = express()
-const port = 3000
+const port = 3002
 const cors = require("cors")
-const fetch = (...args) => import('node-fetch').then(({default: fetch}) => fetch(...args));
 const axios = require("axios")
 
 app.use("/css", express.static(__dirname + "/css/"))
@@ -30,7 +29,6 @@ app.get("/search", async (req, res) => {
     const resultPlanets = await axios.get(
         "https://swapi.dev/api/planets"
     )
-
 
     const results = [...resultPpl.data.results, ...resultStarships.data.results, ...resultPlanets.data.results]
     const filtered = results.filter(e => e.name.toLowerCase().includes(req.query.name.toLowerCase()))

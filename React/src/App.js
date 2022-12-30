@@ -1,12 +1,8 @@
-import React, { useState } from "react";
 import "./App.css";
+import React, { useState } from "react";
 import axios from "axios";
-
-import Box from '@mui/material/Box';
 import Card from '@mui/material/Card';
-import CardActions from '@mui/material/CardActions';
 import CardContent from '@mui/material/CardContent';
-import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
 
 function App() {
@@ -16,7 +12,7 @@ function App() {
   async function searchData(e){
     e.preventDefault()
     
-    axios.get("http://localhost:3000/search?name=" + name).then(function (response) {
+    axios.get("http://localhost:3002/search?name=" + name).then(function (response) {
       console.log(response.data.results);
       setResult(response.data.results);
     });
@@ -36,9 +32,6 @@ function App() {
       </form>
       <div>
         {result.map((result) => {
-          // return <div key={result.name}>
-          //   {JSON.stringify(result)}
-          //   </div>;
           return (
             <Card key={result.name} sx={{ minWidth: 150 }}>
               <CardContent>
